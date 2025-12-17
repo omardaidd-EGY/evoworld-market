@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: evoworld-market
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn main:app
+    envVars:
+      DATABASE_URL: 
+        fromDatabase:
+          name: evoworld-db
+          property: connectionString
+databases:
+  - name: evoworld-db
+    plan: free
